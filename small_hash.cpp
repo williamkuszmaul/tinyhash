@@ -130,18 +130,6 @@ private:
   vector <linear_probing> tables;
 };
 
-uint32_t hash_int(uint32_t x) {
-    // An old 32 bit hash I used to use
-  uint64_t h = x;
-  h = (~h) + (h << 21); // h = (h << 21) - h - 1;
-  h = h ^ (h >> 24);
-  h = (h + (h << 3)) + (h << 8); // h * 265
-  h = h ^ (h >> 14);
-  h = (h + (h << 2)) + (h << 4); // h * 21
-  h = h ^ (h >> 28);
-  return h & (((uint64_t)1 << 32) - 1);
-}
-
 struct Hash {
    inline size_t operator()(const uint32_t &x) const {
      uint64_t h = x;
